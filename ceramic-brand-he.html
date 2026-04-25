@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Đất & Nước — כוסות קרמיקה וייטנאמיות</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500&family=Noto+Serif+Hebrew:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #5A3E2B;
@@ -32,10 +32,23 @@
   body {
     background: var(--background);
     color: var(--text);
-    font-family: 'Jost', sans-serif;
+    font-family: 'Assistant', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
     cursor: none;
+    direction:rtl;
+  }
+  html[dir="rtl"] .hero-eyebrow,
+  html[dir="rtl"] .section-label,
+  html[dir="rtl"] .product-tag,
+  html[dir="rtl"] .seller-badge,
+  html[dir="rtl"] .testi-name,
+  html[dir="rtl"] .footer-col h4,
+  html[dir="rtl"] .btn-primary,
+  html[dir="rtl"] .btn-ghost,
+  html[dir="rtl"] .quick-add,
+  html[dir="rtl"] .checkout-btn {
+    letter-spacing:0;
   }
 
   /* ── CUSTOM CURSOR ── */
@@ -75,7 +88,7 @@
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Noto Serif Hebrew', serif;
     font-size: 1.5rem;
     font-weight: 300;
     letter-spacing: .12em;
@@ -97,7 +110,7 @@
   .cart-btn {
     background:none; border:1px solid var(--border);
     color:var(--text); padding:8px 20px;
-    font-family:'Jost',sans-serif; font-weight:300;
+    font-family:'Assistant',sans-serif; font-weight:300;
     font-size:.75rem; letter-spacing:.15em;
     text-transform:uppercase; cursor:none;
     transition: border-color .3s, color .3s, box-shadow .3s;
@@ -196,7 +209,7 @@
     content:''; display:block; width:32px; height:1px; background:var(--accent);
   }
   .hero-title {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Noto Serif Hebrew',serif;
     font-size: clamp(3rem,5vw,5.2rem);
     font-weight:300; line-height:1.08;
     margin-bottom:24px;
@@ -215,7 +228,7 @@
     padding:14px 36px;
     background: linear-gradient(135deg, var(--accent), #B46A3C);
     color: var(--deep);
-    font-family:'Jost',sans-serif;
+    font-family:'Assistant',sans-serif;
     font-size:.78rem; font-weight:400;
     letter-spacing:.15em; text-transform:uppercase;
     border:none; cursor:none;
@@ -228,7 +241,7 @@
     padding:14px 36px;
     background:transparent;
     color:var(--text);
-    font-family:'Jost',sans-serif;
+    font-family:'Assistant',sans-serif;
     font-size:.78rem; font-weight:300;
     letter-spacing:.15em; text-transform:uppercase;
     border:1px solid var(--border);
@@ -286,7 +299,7 @@
   .products { background: linear-gradient(180deg, var(--deep) 0%, #3A2A21 100%); }
   .products-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:64px; }
   .section-title {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Noto Serif Hebrew',serif;
     font-size: clamp(2.2rem,3.5vw,3.2rem);
     font-weight:300; line-height:1.15;
   }
@@ -328,7 +341,7 @@
     position:absolute; bottom:-52px; left:0; right:0;
     background: rgba(122,140,102,0.9);
     color: var(--deep);
-    font-family:'Jost',sans-serif; font-size:.72rem;
+    font-family:'Assistant',sans-serif; font-size:.72rem;
     letter-spacing:.2em; text-transform:uppercase;
     padding:16px; text-align:center; border:none;
     cursor:none; font-weight:400;
@@ -338,7 +351,7 @@
 
   .product-info { padding:20px 24px 24px; }
   .product-name {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Noto Serif Hebrew',serif;
     font-size:1.2rem; font-weight:400; margin-bottom:8px;
     letter-spacing:.02em;
   }
@@ -383,7 +396,7 @@
   }
   .story-content .section-label { margin-bottom:32px; }
   .story-title {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Noto Serif Hebrew',serif;
     font-size: clamp(2rem,3vw,2.8rem);
     font-weight:300; line-height:1.25;
     margin-bottom:28px;
@@ -418,7 +431,7 @@
 
   .value-icon { margin-bottom:32px; opacity:.7; }
   .value-name {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Noto Serif Hebrew',serif;
     font-size:1.3rem; font-weight:400;
     margin-bottom:16px;
   }
@@ -447,7 +460,7 @@
   }
   .seller-img { aspect-ratio:16/9; position:relative; overflow:hidden; background:linear-gradient(135deg,#4A3324,#5A3E2B); }
   .seller-info { padding:24px 28px; }
-  .seller-name { font-family:'Cormorant Garamond',serif; font-size:1.4rem; margin-bottom:8px; }
+  .seller-name { font-family:'Noto Serif Hebrew',serif; font-size:1.4rem; margin-bottom:8px; }
   .seller-price { color:var(--accent); margin-bottom:16px; font-size:.95rem; }
   .seller-desc { color:var(--text-dim); font-size:.82rem; line-height:1.75; margin-bottom:24px; }
 
@@ -461,12 +474,12 @@
   }
   .testi-card::before {
     content:'"';
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Noto Serif Hebrew',serif;
     font-size:6rem; line-height:1;
     color:var(--accent); opacity:.15;
     position:absolute; top:-10px; left:32px;
   }
-  .testi-quote { font-family:'Cormorant Garamond',serif; font-size:1.1rem; line-height:1.7; margin-bottom:28px; font-style:italic; }
+  .testi-quote { font-family:'Noto Serif Hebrew',serif; font-size:1.1rem; line-height:1.7; margin-bottom:28px; font-style:italic; }
   .testi-author { display:flex; align-items:center; gap:12px; }
   .testi-avatar { width:36px; height:36px; border-radius:50%; background:var(--mid); border:1px solid var(--border); }
   .testi-name { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; }
@@ -497,7 +510,7 @@
     z-index:2;
   }
   .cta-title {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Noto Serif Hebrew',serif;
     font-size: clamp(2.5rem,4.5vw,4rem);
     font-weight:300; line-height:1.15;
     margin-bottom:20px;
@@ -532,7 +545,7 @@
     gap:60px; margin-bottom:60px;
   }
   .footer-brand {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Noto Serif Hebrew',serif;
     font-size:1.6rem; font-weight:300;
     color:var(--text); margin-bottom:16px;
   }
@@ -585,7 +598,7 @@
     padding:28px 32px;
     border-bottom:1px solid var(--border);
   }
-  .cart-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; }
+  .cart-title { font-family:'Noto Serif Hebrew',serif; font-size:1.4rem; }
   .cart-close { background:none; border:none; color:var(--text); cursor:none; font-size:1.2rem; opacity:.6; transition:opacity .3s; }
   .cart-close:hover { opacity:1; }
   .cart-body { flex:1; padding:32px; overflow-y:auto; }
@@ -596,7 +609,7 @@
   }
   .cart-item-img { width:72px; height:72px; background:var(--mid); flex-shrink:0; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; }
   .cart-item-info { flex:1; }
-  .cart-item-name { font-family:'Cormorant Garamond',serif; font-size:1rem; margin-bottom:6px; }
+  .cart-item-name { font-family:'Noto Serif Hebrew',serif; font-size:1rem; margin-bottom:6px; }
   .cart-item-price { color:var(--accent); font-size:.85rem; }
   .cart-item-qty { display:flex; align-items:center; gap:12px; margin-top:10px; }
   .qty-btn { background:none; border:1px solid var(--border); color:var(--text); width:24px; height:24px; cursor:none; transition:border-color .3s; }
@@ -608,7 +621,7 @@
     width:100%; padding:16px;
     background:linear-gradient(135deg,var(--accent),#B46A3C);
     color:var(--deep); border:none; cursor:none;
-    font-family:'Jost',sans-serif; font-size:.78rem; font-weight:400;
+    font-family:'Assistant',sans-serif; font-size:.78rem; font-weight:400;
     letter-spacing:.15em; text-transform:uppercase;
     transition:opacity .3s;
   }
@@ -623,7 +636,7 @@
   }
   .mobile-menu.open { transform:translateY(0); }
   .mobile-menu a {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Noto Serif Hebrew',serif;
     font-size:2.5rem; color:var(--text);
     text-decoration:none; font-weight:300;
     transition:color .3s;
