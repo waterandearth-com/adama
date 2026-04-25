@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đất & Nước — כוסות קרמיקה וייטנאמיות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500&family=Noto+Serif+Hebrew:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #5A3E2B;
+    --secondary: #D9C2A3;
+    --dark: #2F241D;
+    --accent: #7A8C66;
+    --highlight: #B46A3C;
+    --background: var(--dark);
+    --text: var(--secondary);
+    --deep: var(--dark);
+    --mid: var(--primary);
+    --accent-dim: rgba(122,140,102,0.15);
+    --text-dim: rgba(217,194,163,0.62);
+    --text-faint: rgba(217,194,163,0.28);
+    --card-bg: rgba(90,62,43,0.24);
+    --border: rgba(122,140,102,0.18);
+    --shadow-glow: 0 0 40px rgba(180,106,60,0.08);
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Assistant', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+    direction:rtl;
+  }
+  html[dir="rtl"] .hero-eyebrow,
+  html[dir="rtl"] .section-label,
+  html[dir="rtl"] .product-tag,
+  html[dir="rtl"] .seller-badge,
+  html[dir="rtl"] .testi-name,
+  html[dir="rtl"] .footer-col h4,
+  html[dir="rtl"] .btn-primary,
+  html[dir="rtl"] .btn-ghost,
+  html[dir="rtl"] .quick-add,
+  html[dir="rtl"] .checkout-btn {
+    letter-spacing:0;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  #cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: width .25s, height .25s, background .25s;
+    mix-blend-mode: screen;
+  }
+  #cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(122,140,102,0.5);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: transform .08s ease-out, width .3s, height .3s, opacity .3s;
+  }
+  body:hover #cursor-ring { opacity:1; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 24px 60px;
+    transition: background .4s, backdrop-filter .4s;
+  }
+  nav.scrolled {
+    background: rgba(47,36,29,0.85);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family:'Noto Serif Hebrew', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: .12em;
+    color: var(--text);
+    text-decoration:none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display:flex; gap:40px; list-style:none; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration:none;
+    font-size:.78rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-right { display:flex; align-items:center; gap:24px; }
+  .cart-btn {
+    background:none; border:1px solid var(--border);
+    color:var(--text); padding:8px 20px;
+    font-family:'Assistant',sans-serif; font-weight:300;
+    font-size:.75rem; letter-spacing:.15em;
+    text-transform:uppercase; cursor:none;
+    transition: border-color .3s, color .3s, box-shadow .3s;
+    position:relative;
+  }
+  .cart-btn:hover { border-color:var(--accent); color:var(--accent); box-shadow:0 0 20px rgba(122,140,102,0.2); }
+  .cart-count {
+    position:absolute; top:-8px; right:-8px;
+    width:18px; height:18px; border-radius:50%;
+    background:var(--accent); color:var(--deep);
+    font-size:.6rem; display:flex; align-items:center; justify-content:center;
+    font-weight:400;
+  }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:none; background:none; border:none; }
+  .hamburger span { display:block; width:24px; height:1px; background:var(--text); transition: transform .3s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display:flex; align-items:center;
+    position:relative; overflow:hidden;
+    padding: 120px 60px 60px;
+  }
+  .bg-video {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:.26;
+    filter:saturate(.85) contrast(1.08);
+    pointer-events:none;
+  }
+  .hero .bg-video { z-index:0; }
+  .video-warmth {
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg, rgba(47,36,29,0.92) 0%, rgba(47,36,29,0.62) 42%, rgba(47,36,29,0.88) 100%),
+      radial-gradient(circle at 70% 40%, rgba(180,106,60,0.18), transparent 42%);
+    pointer-events:none;
+    z-index:1;
+  }
+
+  /* background blobs */
+  .blob-wrap { position:absolute; inset:0; pointer-events:none; z-index:2; }
+  .blob {
+    position:absolute; border-radius:50%;
+    filter: blur(80px);
+    animation: blobFloat 12s ease-in-out infinite;
+  }
+  .blob-1 {
+    width:600px; height:600px;
+    background: radial-gradient(circle, rgba(122,140,102,0.07) 0%, transparent 70%);
+    top:-100px; left:-100px;
+    animation-duration:15s;
+  }
+  .blob-2 {
+    width:500px; height:500px;
+    background: radial-gradient(circle, rgba(90,62,43,0.5) 0%, transparent 70%);
+    bottom:-50px; right:10%;
+    animation-duration:12s; animation-delay:-4s;
+  }
+  .blob-3 {
+    width:300px; height:300px;
+    background: radial-gradient(circle, rgba(122,140,102,0.04) 0%, transparent 70%);
+    top:40%; right:30%;
+    animation-duration:18s; animation-delay:-8s;
+  }
+  @keyframes blobFloat {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(30px,-20px) scale(1.05); }
+    66% { transform: translate(-20px,15px) scale(0.97); }
+  }
+
+  /* noise texture overlay */
+  .hero::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity:.4; pointer-events:none; z-index:2;
+  }
+
+  .hero-content {
+    position:relative; z-index:3;
+    max-width:560px;
+    opacity:0; transform:translateY(30px);
+    animation: fadeUp .9s ease forwards .3s;
+  }
+  .hero-eyebrow {
+    font-size:.7rem; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:28px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .hero-eyebrow::before {
+    content:''; display:block; width:32px; height:1px; background:var(--accent);
+  }
+  .hero-title {
+    font-family:'Noto Serif Hebrew',serif;
+    font-size: clamp(3rem,5vw,5.2rem);
+    font-weight:300; line-height:1.08;
+    margin-bottom:24px;
+    letter-spacing:-.01em;
+  }
+  .hero-title em { font-style:italic; color:var(--accent); }
+  .hero-sub {
+    color:var(--text-dim);
+    font-size:1rem; line-height:1.75;
+    margin-bottom:48px;
+    font-weight:300;
+  }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+
+  .btn-primary {
+    padding:14px 36px;
+    background: linear-gradient(135deg, var(--accent), #B46A3C);
+    color: var(--deep);
+    font-family:'Assistant',sans-serif;
+    font-size:.78rem; font-weight:400;
+    letter-spacing:.15em; text-transform:uppercase;
+    border:none; cursor:none;
+    transition: transform .3s, box-shadow .3s;
+    text-decoration:none; display:inline-block;
+  }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(122,140,102,0.35); }
+
+  .btn-ghost {
+    padding:14px 36px;
+    background:transparent;
+    color:var(--text);
+    font-family:'Assistant',sans-serif;
+    font-size:.78rem; font-weight:300;
+    letter-spacing:.15em; text-transform:uppercase;
+    border:1px solid var(--border);
+    cursor:none;
+    transition: border-color .3s, color .3s, box-shadow .3s;
+    text-decoration:none; display:inline-block;
+  }
+  .btn-ghost:hover { border-color:var(--accent); color:var(--accent); box-shadow:0 0 24px rgba(122,140,102,0.12); }
+
+  .scroll-hint {
+    position:absolute; bottom:40px; left:60px;
+    display:flex; align-items:center; gap:12px;
+    color:var(--text-faint); font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
+    animation: fadeUp .9s ease forwards 1.2s; opacity:0;
+    z-index:3;
+  }
+  .scroll-line { width:48px; height:1px; background:var(--text-faint); position:relative; overflow:hidden; }
+  .scroll-line::after {
+    content:''; position:absolute; left:-100%; top:0;
+    width:100%; height:100%; background:var(--accent);
+    animation: scrollLine 2s ease-in-out infinite 1.5s;
+  }
+  @keyframes scrollLine { 0%{left:-100%} 100%{left:100%} }
+
+  /* ── SECTION BASE ── */
+  section { position:relative; }
+  .section-pad { padding: 120px 60px; }
+  .section-label {
+    font-size:.68rem; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .section-label::before { content:''; display:block; width:24px; height:1px; background:var(--accent); }
+
+  /* divider */
+  .divider {
+    width:100%; height:1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal { opacity:0; transform:translateY(36px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-d1 { transition-delay:.1s; }
+  .reveal-d2 { transition-delay:.2s; }
+  .reveal-d3 { transition-delay:.3s; }
+  .reveal-d4 { transition-delay:.4s; }
+
+  @keyframes fadeUp {
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  /* ── FEATURED PRODUCTS ── */
+  .products { background: linear-gradient(180deg, var(--deep) 0%, #3A2A21 100%); }
+  .products-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:64px; }
+  .section-title {
+    font-family:'Noto Serif Hebrew',serif;
+    font-size: clamp(2.2rem,3.5vw,3.2rem);
+    font-weight:300; line-height:1.15;
+  }
+  .products-grid {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:28px;
+  }
+
+  .product-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    overflow:hidden;
+    position:relative;
+    cursor:none;
+    transition: transform .4s ease, box-shadow .4s ease, border-color .4s;
+  }
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 30px rgba(122,140,102,0.08);
+    border-color: rgba(122,140,102,0.25);
+  }
+
+  .product-img-wrap {
+    aspect-ratio:4/5; overflow:hidden; position:relative;
+    background: linear-gradient(135deg, #4A3324, #5A3E2B);
+  }
+  .product-img-wrap img {
+    width:100%; height:100%; object-fit:cover;
+    transition: transform .6s ease;
+    display:block;
+  }
+  .product-card:hover .product-img-wrap img { transform:scale(1.06); }
+
+  /* placeholder ceramic cup art */
+  .cup-art { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+
+  .quick-add {
+    position:absolute; bottom:-52px; left:0; right:0;
+    background: rgba(122,140,102,0.9);
+    color: var(--deep);
+    font-family:'Assistant',sans-serif; font-size:.72rem;
+    letter-spacing:.2em; text-transform:uppercase;
+    padding:16px; text-align:center; border:none;
+    cursor:none; font-weight:400;
+    transition: bottom .35s ease;
+  }
+  .product-card:hover .quick-add { bottom:0; }
+
+  .product-info { padding:20px 24px 24px; }
+  .product-name {
+    font-family:'Noto Serif Hebrew',serif;
+    font-size:1.2rem; font-weight:400; margin-bottom:8px;
+    letter-spacing:.02em;
+  }
+  .product-meta { display:flex; justify-content:space-between; align-items:center; }
+  .product-price { color:var(--accent); font-size:.9rem; letter-spacing:.05em; }
+  .product-tag {
+    font-size:.62rem; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--text-faint); border:1px solid var(--border); padding:4px 10px;
+  }
+
+  /* ── BRAND STORY ── */
+  .story {
+    background: #241B16;
+    display:grid; grid-template-columns:1fr 1fr; gap:0; min-height:70vh;
+  }
+  .story-img {
+    position:relative; overflow:hidden;
+    min-height:70vh;
+    background: linear-gradient(135deg, #3A2A21, #6B4A32);
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 58% 42%;
+    gap:10px;
+    padding:10px;
+  }
+  .story-img-inner { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.9) contrast(1.05); }
+  .story-img-main { grid-row:1 / 3; }
+  .story-img-small { min-height:0; }
+  .story-img-overlay {
+    position:absolute; inset:0;
+    pointer-events:none;
+    z-index:1;
+    background:
+      linear-gradient(90deg, rgba(47,36,29,0.08) 0%, rgba(47,36,29,0.22) 52%, #241B16 100%),
+      linear-gradient(180deg, rgba(47,36,29,0.18), rgba(47,36,29,0.34));
+  }
+
+  .story-content {
+    padding: 100px 80px;
+    display:flex; flex-direction:column; justify-content:center;
+    background: #241B16;
+  }
+  .story-content .section-label { margin-bottom:32px; }
+  .story-title {
+    font-family:'Noto Serif Hebrew',serif;
+    font-size: clamp(2rem,3vw,2.8rem);
+    font-weight:300; line-height:1.25;
+    margin-bottom:28px;
+  }
+  .story-body {
+    color:var(--text-dim); line-height:1.9;
+    font-size:.95rem; margin-bottom:40px;
+  }
+  .story-body p + p { margin-top:16px; }
+
+  /* ── VALUES ── */
+  .values { background:var(--deep); }
+  .values-grid {
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background: var(--border); border:1px solid var(--border);
+    margin-top:64px;
+  }
+  .value-card {
+    background:var(--deep);
+    padding:48px 36px;
+    transition: background .4s;
+    position:relative; overflow:hidden;
+  }
+  .value-card::before {
+    content:''; position:absolute;
+    bottom:0; left:0; right:0; height:2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    transform:scaleX(0); transition:transform .4s;
+  }
+  .value-card:hover { background: rgba(90,62,43,0.15); }
+  .value-card:hover::before { transform:scaleX(1); }
+
+  .value-icon { margin-bottom:32px; opacity:.7; }
+  .value-name {
+    font-family:'Noto Serif Hebrew',serif;
+    font-size:1.3rem; font-weight:400;
+    margin-bottom:16px;
+  }
+  .value-desc { color:var(--text-dim); font-size:.85rem; line-height:1.8; }
+
+  /* ── BEST SELLERS ── */
+  .bestsellers { background: linear-gradient(180deg, var(--deep), #2A201A); overflow:hidden; }
+  .sellers-scroll-wrap { overflow-x:auto; padding-bottom:20px; }
+  .sellers-scroll-wrap::-webkit-scrollbar { height:1px; }
+  .sellers-scroll-wrap::-webkit-scrollbar-track { background:transparent; }
+  .sellers-scroll-wrap::-webkit-scrollbar-thumb { background:var(--accent); }
+  .sellers-row { display:flex; gap:24px; width:max-content; padding:40px 60px 0; }
+  .seller-card {
+    width:360px; flex-shrink:0;
+    background:var(--card-bg); border:1px solid var(--border);
+    overflow:hidden; cursor:none;
+    transition:transform .4s, box-shadow .4s;
+  }
+  .seller-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+  .seller-card.featured { border-color:rgba(122,140,102,0.3); }
+  .seller-badge {
+    position:absolute; top:16px; left:16px;
+    background:var(--accent); color:var(--deep);
+    font-size:.62rem; letter-spacing:.15em; text-transform:uppercase;
+    padding:5px 12px; font-weight:400;
+  }
+  .seller-img { aspect-ratio:16/9; position:relative; overflow:hidden; background:linear-gradient(135deg,#4A3324,#5A3E2B); }
+  .seller-info { padding:24px 28px; }
+  .seller-name { font-family:'Noto Serif Hebrew',serif; font-size:1.4rem; margin-bottom:8px; }
+  .seller-price { color:var(--accent); margin-bottom:16px; font-size:.95rem; }
+  .seller-desc { color:var(--text-dim); font-size:.82rem; line-height:1.75; margin-bottom:24px; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background:#241B16; }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:64px; }
+  .testi-card {
+    padding:40px; border:1px solid var(--border);
+    background: rgba(90,62,43,0.1);
+    position:relative;
+  }
+  .testi-card::before {
+    content:'"';
+    font-family:'Noto Serif Hebrew',serif;
+    font-size:6rem; line-height:1;
+    color:var(--accent); opacity:.15;
+    position:absolute; top:-10px; left:32px;
+  }
+  .testi-quote { font-family:'Noto Serif Hebrew',serif; font-size:1.1rem; line-height:1.7; margin-bottom:28px; font-style:italic; }
+  .testi-author { display:flex; align-items:center; gap:12px; }
+  .testi-avatar { width:36px; height:36px; border-radius:50%; background:var(--mid); border:1px solid var(--border); }
+  .testi-name { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; }
+  .testi-role { color:var(--text-faint); font-size:.72rem; }
+  .stars { color:var(--accent); font-size:.8rem; margin-bottom:20px; letter-spacing:2px; }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    text-align:center; padding: 140px 60px;
+    background: linear-gradient(180deg, #2A201A, var(--deep));
+    position:relative; overflow:hidden;
+  }
+  .cta-section::before {
+    content:'';
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(42,32,26,0.78), rgba(47,36,29,0.92)),
+      radial-gradient(circle at 50% 45%, rgba(122,140,102,0.12) 0%, transparent 58%);
+    pointer-events:none;
+    z-index:1;
+  }
+  .cta-section .bg-video {
+    z-index:0;
+    opacity:.42;
+  }
+  .cta-section > :not(.bg-video) {
+    position:relative;
+    z-index:2;
+  }
+  .cta-title {
+    font-family:'Noto Serif Hebrew',serif;
+    font-size: clamp(2.5rem,4.5vw,4rem);
+    font-weight:300; line-height:1.15;
+    margin-bottom:20px;
+  }
+  .cta-sub { color:var(--text-dim); margin-bottom:48px; font-size:1rem; }
+  .cta-section .btn-primary { padding:18px 56px; font-size:.82rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1E1713;
+    border-top:1px solid var(--border);
+    padding:80px 60px 40px;
+    position:relative;
+    overflow:hidden;
+  }
+  footer .bg-video {
+    z-index:0;
+    opacity:.22;
+  }
+  footer::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(30,23,19,0.88), rgba(30,23,19,0.96));
+    pointer-events:none;
+    z-index:1;
+  }
+  .footer-top {
+    position:relative;
+    z-index:2;
+    display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:60px; margin-bottom:60px;
+  }
+  .footer-brand {
+    font-family:'Noto Serif Hebrew',serif;
+    font-size:1.6rem; font-weight:300;
+    color:var(--text); margin-bottom:16px;
+  }
+  .footer-brand span { color:var(--accent); }
+  .footer-tagline { color:var(--text-faint); font-size:.82rem; line-height:1.7; margin-bottom:28px; }
+  .social-links { display:flex; gap:12px; }
+  .social-link {
+    width:36px; height:36px; border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-dim); text-decoration:none; font-size:.75rem;
+    transition:border-color .3s, color .3s, box-shadow .3s;
+  }
+  .social-link:hover { border-color:var(--accent); color:var(--accent); box-shadow:0 0 12px rgba(122,140,102,0.2); }
+  .footer-col h4 {
+    font-size:.65rem; letter-spacing:.25em; text-transform:uppercase;
+    color:var(--text-faint); margin-bottom:24px;
+  }
+  .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:12px; }
+  .footer-col ul a {
+    color:var(--text-dim); text-decoration:none;
+    font-size:.85rem; transition:color .3s;
+  }
+  .footer-col ul a:hover { color:var(--text); }
+  .footer-bottom {
+    position:relative;
+    z-index:2;
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:40px; border-top:1px solid var(--border);
+    color:var(--text-faint); font-size:.72rem;
+  }
+
+  /* ── CART DRAWER ── */
+  .cart-overlay {
+    position:fixed; inset:0; background:rgba(31,23,19,0.8);
+    z-index:200; opacity:0; pointer-events:none;
+    transition:opacity .4s; backdrop-filter:blur(4px);
+  }
+  .cart-overlay.open { opacity:1; pointer-events:all; }
+  .cart-drawer {
+    position:fixed; right:-480px; top:0; bottom:0;
+    width:420px; background: #3A2A21;
+    border-left:1px solid var(--border);
+    z-index:201;
+    transition:right .45s cubic-bezier(.22,1,.36,1);
+    display:flex; flex-direction:column;
+  }
+  .cart-drawer.open { right:0; }
+  .cart-header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:28px 32px;
+    border-bottom:1px solid var(--border);
+  }
+  .cart-title { font-family:'Noto Serif Hebrew',serif; font-size:1.4rem; }
+  .cart-close { background:none; border:none; color:var(--text); cursor:none; font-size:1.2rem; opacity:.6; transition:opacity .3s; }
+  .cart-close:hover { opacity:1; }
+  .cart-body { flex:1; padding:32px; overflow-y:auto; }
+  .cart-empty { color:var(--text-dim); text-align:center; margin-top:80px; font-size:.9rem; line-height:1.7; }
+  .cart-item {
+    display:flex; gap:16px; padding:20px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .cart-item-img { width:72px; height:72px; background:var(--mid); flex-shrink:0; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; }
+  .cart-item-info { flex:1; }
+  .cart-item-name { font-family:'Noto Serif Hebrew',serif; font-size:1rem; margin-bottom:6px; }
+  .cart-item-price { color:var(--accent); font-size:.85rem; }
+  .cart-item-qty { display:flex; align-items:center; gap:12px; margin-top:10px; }
+  .qty-btn { background:none; border:1px solid var(--border); color:var(--text); width:24px; height:24px; cursor:none; transition:border-color .3s; }
+  .qty-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .cart-footer { padding:24px 32px; border-top:1px solid var(--border); }
+  .cart-total { display:flex; justify-content:space-between; margin-bottom:20px; font-size:.95rem; }
+  .cart-total strong { color:var(--accent); }
+  .checkout-btn {
+    width:100%; padding:16px;
+    background:linear-gradient(135deg,var(--accent),#B46A3C);
+    color:var(--deep); border:none; cursor:none;
+    font-family:'Assistant',sans-serif; font-size:.78rem; font-weight:400;
+    letter-spacing:.15em; text-transform:uppercase;
+    transition:opacity .3s;
+  }
+  .checkout-btn:hover { opacity:.88; }
+
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    position:fixed; inset:0; background:rgba(31,23,19,0.97);
+    z-index:150; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:32px;
+    transform:translateY(-100%); transition:transform .45s cubic-bezier(.22,1,.36,1);
+  }
+  .mobile-menu.open { transform:translateY(0); }
+  .mobile-menu a {
+    font-family:'Noto Serif Hebrew',serif;
+    font-size:2.5rem; color:var(--text);
+    text-decoration:none; font-weight:300;
+    transition:color .3s;
+  }
+  .mobile-menu a:hover { color:var(--accent); }
+
+  /* ── TOAST ── */
+  .toast {
+    position:fixed; bottom:40px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:rgba(122,140,102,0.15); border:1px solid rgba(122,140,102,0.3);
+    color:var(--text); padding:12px 28px; font-size:.82rem;
+    backdrop-filter:blur(12px); opacity:0;
+    transition:opacity .3s, transform .3s; z-index:300;
+    letter-spacing:.08em;
+  }
+  .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width:1024px) {
+    .products-grid { grid-template-columns:repeat(2,1fr); }
+    .values-grid { grid-template-columns:repeat(2,1fr); }
+    .footer-top { grid-template-columns:1fr 1fr; gap:40px; }
+    .story { grid-template-columns:1fr; }
+    .story-img { min-height:50vw; }
+    .story-img-overlay { background:linear-gradient(180deg,transparent 60%,#241B16); }
+    .testi-grid { grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:768px) {
+    nav { padding:20px 24px; }
+    .nav-links, .nav-right > .cart-btn:not(.mobile-show) { display:none; }
+    .hamburger { display:flex; }
+    .hero { padding:100px 24px 60px; min-height:100svh; }
+    .section-pad { padding:80px 24px; }
+    .products-header { flex-direction:column; align-items:flex-start; gap:20px; }
+    .products-grid { grid-template-columns:1fr; }
+    .values-grid { grid-template-columns:1fr; }
+    .testi-grid { grid-template-columns:1fr; }
+    .footer-top { grid-template-columns:1fr; gap:32px; }
+    .footer-bottom { flex-direction:column; gap:16px; text-align:center; }
+    .sellers-row { padding:20px 24px 0; }
+    .story-content { padding:60px 24px; }
+    .cta-section { padding:100px 24px; }
+    footer { padding:60px 24px 32px; }
+    .scroll-hint { left:24px; }
+    .cart-drawer { width:100%; right:-100%; }
+    body { cursor:auto; }
+    #cursor, #cursor-ring { display:none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Toast -->
+<div class="toast" id="toast">נוסף לסל</div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#products" onclick="closeMobile()">קולקציה</a>
+  <a href="#story" onclick="closeMobile()">הסיפור שלנו</a>
+  <a href="#values" onclick="closeMobile()">האומנות</a>
+  <a href="#contact" onclick="closeMobile()">צור קשר</a>
+</div>
+
+<!-- Cart Overlay & Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <div class="cart-title">הסל שלך</div>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty" id="cartEmpty">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin:0 auto 20px;display:block;opacity:.3">
+        <circle cx="24" cy="24" r="23" stroke="#7A8C66" stroke-width="1"/>
+        <path d="M14 16h20l-3 14H17L14 16z" stroke="#7A8C66" stroke-width="1" fill="none"/>
+        <circle cx="19" cy="34" r="2" fill="#7A8C66" opacity=".5"/>
+        <circle cx="29" cy="34" r="2" fill="#7A8C66" opacity=".5"/>
+      </svg>
+      הסל שלך ריק.<br>אפשר להתחיל מהקולקציה למטה.
+    </div>
+    <div id="cartItems"></div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>סה״כ</span><strong id="cartTotalPrice">$0</strong></div>
+    <button class="checkout-btn" onclick="checkout()">המשך לתשלום</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">Đất<span>&</span>Nước</a>
+  <ul class="nav-links">
+    <li><a href="#products">קולקציה</a></li>
+    <li><a href="#story">הסיפור שלנו</a></li>
+    <li><a href="#values">האומנות</a></li>
+    <li><a href="#contact">צור קשר</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="openCart()">
+      סל
+      <span class="cart-count" id="cartCount" style="display:none">0</span>
+    </button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="תפריט">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <video class="bg-video" autoplay muted loop playsinline preload="metadata" poster="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_fields_in_Vietnam.jpg?width=1600">
+    <source src="../sora-rural-vietnam.mp4" type="video/mp4">
+    <source src="../sora-rural-vietnam.webm" type="video/webm">
+  </video>
+  <div class="video-warmth"></div>
+  <div class="blob-wrap">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">מהוי אן, וייטנאם</div>
+    <h1 class="hero-title">
+      כוסות קרמיקה<br>וייטנאמיות<br><em>בעבודת יד</em>
+    </h1>
+    <p class="hero-sub">נוצרו לרגעים איטיים<br>ולטקסים יומיומיים עם משמעות.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">לקולקציה</a>
+      <a href="#story" class="btn-ghost">לסיפור</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    גללו להמשך
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURED PRODUCTS -->
+<section class="products section-pad" id="products">
+  <div class="products-header reveal">
+    <div>
+      <div class="section-label">הקולקציה</div>
+      <h2 class="section-title">כל כוס,<br><em style="font-style:italic;color:var(--accent)">יצירה אחת ויחידה</em></h2>
+    </div>
+    <a href="#" class="btn-ghost" style="white-space:nowrap">הצג הכל</a>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BRAND STORY -->
+<section class="story" id="story">
+  <div class="story-img reveal">
+    <img class="story-img-inner story-img-main" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_fields_in_Vietnam.jpg?width=1200" alt="שדות אורז כפריים בווייטנאם">
+    <img class="story-img-inner story-img-small" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_Cultivation_Vietnam.1024x768.jpg?width=800" alt="חקלאים בשדות אורז בווייטנאם הכפרית">
+    <img class="story-img-inner story-img-small" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Bat-Trang-Ceramic-Village1.jpg?width=800" alt="חיי כפר קרמיקה בווייטנאם">
+    <div class="story-img-overlay"></div>
+  </div>
+  <div class="story-content">
+    <div class="section-label reveal">הסיפור שלנו</div>
+    <h2 class="story-title reveal reveal-d1">נולדו מתוך<br><em style="font-style:italic;color:var(--accent)">האדמה האדומה</em><br>של פווק קיו</h2>
+    <div class="story-body reveal reveal-d2">
+      <p>בכפר קטן מחוץ להוי אן, אומני קרמיקה מעצבים חימר כבר יותר מארבע מאות שנה. הכוסות שלנו נושאות את המסורת הזו: מעוצבות ביד, נשרפות בתנורי עץ ומזוגגות במינרלים שמגיעים מהאדמה עצמה.</p>
+      <p>אין שתי כוסות זהות. טביעת היד של הקדר נשארת בכל קימור. חוסר השלמות הטבעי אינו פגם, אלא הוכחה למלאכה חיה.</p>
+      <p>אנחנו עובדים עם קואופרטיב של שלוש משפחות מהכפר, בתשלום הוגן ובשמירה על טכניקות שאי אפשר לשכפל במכונה.</p>
+    </div>
+    <a href="#" class="btn-ghost reveal reveal-d3">הכירו את היוצרים</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VALUES -->
+<section class="values section-pad" id="values">
+  <div style="text-align:center" class="reveal">
+    <div class="section-label" style="justify-content:center">למה Đất & Nước</div>
+    <h2 class="section-title" style="margin-top:8px">מלאכת יד בלי פשרות</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal reveal-d1">
+      <div class="value-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" stroke="rgba(122,140,102,0.4)" stroke-width="1"/>
+          <path d="M18 8 C14 12 10 18 14 22 C18 26 22 20 18 8Z" stroke="#7A8C66" stroke-width="1.2" fill="rgba(122,140,102,0.08)" stroke-linecap="round"/>
+          <path d="M18 28 L18 22" stroke="#7A8C66" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="value-name">ייחודיות בעבודת יד</div>
+      <p class="value-desc">כל כוס מעוצבת לגמרי ביד. בלי תבניות ובלי מכונות. אתם מקבלים פריט שאין לאף אחד אחר בעולם.</p>
+    </div>
+    <div class="value-card reveal reveal-d2">
+      <div class="value-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" stroke="rgba(122,140,102,0.4)" stroke-width="1"/>
+          <path d="M10 22 C10 26 14 28 18 28 C22 28 26 26 26 22" stroke="#7A8C66" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M18 8 L18 20" stroke="#7A8C66" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="18" cy="20" r="3" stroke="#7A8C66" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="value-name">חומרים טבעיים</div>
+      <p class="value-desc">חימר אדום מאגן נהר טו בון. זיגוגים מינרליים. תנורי עץ. בלי חומרים סינתטיים ובלי ציפויים מזיקים.</p>
+    </div>
+    <div class="value-card reveal reveal-d3">
+      <div class="value-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" stroke="rgba(122,140,102,0.4)" stroke-width="1"/>
+          <rect x="11" y="13" width="14" height="16" rx="1" stroke="#7A8C66" stroke-width="1.2" fill="none"/>
+          <path d="M14 13 C14 10 22 10 22 13" stroke="#7A8C66" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M14 19 L22 19" stroke="#7A8C66" stroke-width="1" stroke-linecap="round"/>
+          <path d="M14 22 L19 22" stroke="#7A8C66" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="value-name">מושלם למתנה</div>
+      <p class="value-desc">כל הזמנה נשלחת באריזת במבוק בעבודת יד עם כרטיס אישי מהאומן שיצר את הכוס.</p>
+    </div>
+    <div class="value-card reveal reveal-d4">
+      <div class="value-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" stroke="rgba(122,140,102,0.4)" stroke-width="1"/>
+          <path d="M12 24 L10 14 L26 14 L24 24 Z" stroke="#7A8C66" stroke-width="1.2" fill="rgba(122,140,102,0.08)"/>
+          <path d="M24 14 Q28 14 28 18 Q28 22 24 22" stroke="#7A8C66" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M10 11 L26 11" stroke="#7A8C66" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="value-name">מוכן לבית קפה</div>
+      <p class="value-desc">זיגוג בטוח למזון, מתאים למדיח, ונפח של 240 מ״ל שמתאים לאספרסו, פילטר או קפה וייטנאמי מסורתי.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BEST SELLERS -->
+<section class="bestsellers" id="bestsellers">
+  <div class="section-pad" style="padding-bottom:0">
+    <div class="reveal">
+      <div class="section-label">האהובים ביותר</div>
+      <h2 class="section-title">הנמכרים ביותר</h2>
+    </div>
+  </div>
+  <div class="sellers-scroll-wrap">
+    <div class="sellers-row" id="sellersRow"></div>
+  </div>
+  <div style="height:80px"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section-pad">
+  <div style="text-align:center" class="reveal">
+    <div class="section-label" style="justify-content:center">קולות</div>
+    <h2 class="section-title">מה אנשים אומרים</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal reveal-d1">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">מעולם לא החזקתי כוס כזו. זה מרגיש כמו שיחה עם אדם שבאמת אכפת לו ממה שהוא יוצר.</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#5A3E2B,#7A8C66)"></div>
+        <div>
+          <div class="testi-name">Linh Nguyen</div>
+          <div class="testi-role">חובבת תה, האנוי</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-d2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">אנחנו משתמשים בהן בבית הקפה שלנו בברלין. הלקוחות שואלים על הכוסות יותר מאשר על הקפה. כבר הזמנו מחדש שלוש פעמים.</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#B46A3C,#5A3E2B)"></div>
+        <div>
+          <div class="testi-name">Marcus Kühn</div>
+          <div class="testi-role">בעל בית קפה, ברלין</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-d3">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">רק האריזה ריגשה אותי. פתק בכתב יד מהאומן. ידעתי שאני מחזיקה משהו אמיתי.</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#7A8C66,#2F241D)"></div>
+        <div>
+          <div class="testi-name">Yuki Tanaka</div>
+          <div class="testi-role">מעצבת, טוקיו</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <video class="bg-video" autoplay muted loop playsinline preload="metadata" poster="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_fields_in_Vietnam.jpg?width=1600">
+    <source src="../sora-contact-vietnam.mp4" type="video/mp4">
+    <source src="../sora-contact-vietnam.webm" type="video/webm">
+  </video>
+  <div class="section-label reveal" style="justify-content:center">התחילו את הטקס שלכם</div>
+  <h2 class="cta-title reveal reveal-d1">מוכנים לשדרג<br>את הטקס היומי שלכם?</h2>
+  <p class="cta-sub reveal reveal-d2">משלוח חינם בהזמנות מעל  · משלוחים לכל העולם</p>
+  <a href="#products" class="btn-primary reveal reveal-d3">לקנייה עכשיו</a>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer-section">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Đất<span>&</span>Nước</div>
+      <p class="footer-tagline">כוסות קרמיקה בעבודת יד<br>מכפר הקדרות העתיק פווק קיו,<br>הוי אן, וייטנאם.</p>
+      <div class="social-links">
+        <a href="#" class="social-link">IG</a>
+        <a href="#" class="social-link">FB</a>
+        <a href="#" class="social-link">PT</a>
+        <a href="#" class="social-link">TK</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>חנות</h4>
+      <ul>
+        <li><a href="#">כל הכוסות</a></li>
+        <li><a href="#">חדשים</a></li>
+        <li><a href="#">הנמכרים ביותר</a></li>
+        <li><a href="#">מארזי מתנה</a></li>
+        <li><a href="#">סיטונאות / עסקים</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>מותג</h4>
+      <ul>
+        <li><a href="#">הסיפור שלנו</a></li>
+        <li><a href="#">האומנים</a></li>
+        <li><a href="#">תהליך היצירה</a></li>
+        <li><a href="#">קיימות</a></li>
+        <li><a href="#">תקשורת</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>עזרה</h4>
+      <ul>
+        <li><a href="#">משלוחים והחזרות</a></li>
+        <li><a href="#">מדריך טיפול</a></li>
+        <li><a href="#">שאלות נפוצות</a></li>
+        <li><a href="mailto:hello@datnuoc.com">hello@datnuoc.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Đất & Nước. כל הזכויות שמורות.</span>
+    <span>נוצר בעבודת יד ובהקפדה בהוי אן, וייטנאם</span>
+    <span>פרטיות · תנאים</span>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cursor.style.left=mx+'px'; cursor.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,.product-card,.value-card,.seller-card,.testi-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='54px'; ring.style.height='54px'; });
+  el.addEventListener('mouseleave',()=>{ cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='36px'; ring.style.height='36px'; });
+});
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── PRODUCTS DATA ──
+const products = [
+  { id:1, name:"בוקר ערפילי", price:48, tag:"סלדון", desc:"זיגוג סלדון עדין בהשראת ערפל ים עם שחר." },
+  { id:2, name:"זרם עמוק", price:56, tag:"שריפת עץ", desc:"אפר נחושת שזורם לבסיס אדמתי כהה." },
+  { id:3, name:"חול נהר", price:44, tag:"טבעי", desc:"חוץ לא מזוגג ופנים שנהבי. פשטות נקייה." },
+  { id:4, name:"פריחת נחושת", price:62, tag:"מהדורה מוגבלת", desc:"גווני נחושת מחומצנת עם שוליים עדינים בעלי נגיעה מוזהבת." },
+  { id:5, name:"שבירת סערה", price:52, tag:"חדש", desc:"פחם כהה עם גימור קרקלה בהיר. מינימלי ונוכח." },
+  { id:6, name:"דמדומי לוטוס", price:58, tag:"סלדון", desc:"ורוד רך שנמס לתוך ירוק ג׳ייד. כוס לערבים שקטים." },
+];
+
+const cupColors = [
+  ['#7A8C66','#4A3324'],['#B46A3C','#2F241D'],['#D9C2A3','#5A3E2B'],
+  ['#6b3a2a','#2a0f0f'],['#5A3E2B','#2F241D'],['#7A8C66','#5A3E2B'],
+];
+
+let cupSvgCounter = 0;
+function drawMiniCup(col1, col2) {
+  const gradId = 'cupGrad' + (++cupSvgCounter);
+  return `<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" width="80" height="112">
+    <defs>
+      <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="${col1}"/><stop offset="100%" stop-color="${col2}"/>
+      </linearGradient>
+    </defs>
+    <path d="M28 58 C26 85 30 108 38 114 L82 114 C90 108 94 85 92 58 Z" fill="url(#${gradId})"/>
+    <ellipse cx="60" cy="58" rx="32" ry="6" fill="${col1}" opacity="0.8"/>
+    <path d="M92 68 Q108 68 108 82 Q108 96 92 96" stroke="${col1}" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="60" cy="114" rx="32" ry="5" fill="${col2}" opacity="0.7"/>
+  </svg>`;
+}
+
+const grid = document.getElementById('productsGrid');
+products.forEach((p,i)=>{
+  const [c1,c2] = cupColors[i];
+  const card = document.createElement('div');
+  card.className = 'product-card reveal reveal-d'+(Math.min(i%3+1,4));
+  card.innerHTML = `
+    <div class="product-img-wrap">
+      <div class="cup-art">${drawMiniCup(c1,c2)}</div>
+      <button class="quick-add" onclick="addToCart(${p.id},'${p.name}',${p.price},${i})">הוספה מהירה</button>
+    </div>
+    <div class="product-info">
+      <div class="product-meta" style="margin-bottom:8px">
+        <span class="product-tag">${p.tag}</span>
+      </div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-meta">
+        <span class="product-price">$${p.price}</span>
+        <button onclick="addToCart(${p.id},'${p.name}',${p.price},${i})" style="background:none;border:none;color:var(--text-faint);cursor:none;font-size:.75rem;letter-spacing:.1em;transition:color .3s" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-faint)'">+ הוסף</button>
+      </div>
+    </div>`;
+  grid.appendChild(card);
+});
+
+// ── BEST SELLERS ──
+const sellers = [
+  { id:1, name:"כוס בוקר ערפילי", price:48, featured:true, desc:"הפריט האהוב ביותר שלנו. זיגוג הסלדון משתנה מאפר זית לחימר נהר לפי האור.", col:['#7A8C66','#4A3324'] },
+  { id:4, name:"פריחת נחושת", price:62, featured:true, desc:"שוליים מוזהבים בעבודת יד וזיגוג נחושת מחומצנת. פריט לאספנים.", col:['#6b3a2a','#2a0f0f'] },
+  { id:2, name:"זרם עמוק", price:56, featured:false, desc:"זיגוג כהה משריפת עץ עם בסיס אדמתי עמוק.", col:['#B46A3C','#2F241D'] },
+  { id:5, name:"שבירת סערה", price:52, featured:false, desc:"גימור קרקלה בפחם ולבן סערה. נועז ומינימלי.", col:['#2a2a3a','#0f0f1a'] },
+];
+
+const sellersRow = document.getElementById('sellersRow');
+sellers.forEach(s=>{
+  const card = document.createElement('div');
+  card.className = 'seller-card'+(s.featured?' featured':'');
+  card.style.position='relative';
+  card.innerHTML = `
+    <div class="seller-img">
+      <div class="cup-art" style="height:100%">${drawMiniCup(s.col[0],s.col[1])}</div>
+      ${s.featured?'<div class="seller-badge">נמכר ביותר</div>':''}
+    </div>
+    <div class="seller-info">
+      <div class="seller-name">${s.name}</div>
+      <div class="seller-price">$${s.price}</div>
+      <p class="seller-desc">${s.desc}</p>
+      <button class="btn-primary" style="width:100%;text-align:center" onclick="addToCart(${s.id},'${s.name}',${s.price},0)">הוסף לסל</button>
+    </div>`;
+  sellersRow.appendChild(card);
+});
+
+// ── CART ──
+let cart = {};
+
+function addToCart(id, name, price, idx) {
+  if(cart[id]) { cart[id].qty++; } 
+  else { cart[id] = {id,name,price,qty:1,idx}; }
+  updateCart();
+  showToast('נוסף לסל — '+name);
+}
+
+function updateCart() {
+  const items = Object.values(cart);
+  const total = items.reduce((s,i)=>s+i.price*i.qty,0);
+  const count = items.reduce((s,i)=>s+i.qty,0);
+  const cc = document.getElementById('cartCount');
+  cc.textContent=count; cc.style.display=count>0?'flex':'none';
+  document.getElementById('cartTotalPrice').textContent='$'+total;
+  document.getElementById('cartFooter').style.display=items.length>0?'block':'none';
+  document.getElementById('cartEmpty').style.display=items.length>0?'none':'block';
+  const ci = document.getElementById('cartItems');
+  ci.innerHTML='';
+  items.forEach(item=>{
+    const [c1,c2]=cupColors[item.idx%cupColors.length];
+    const d=document.createElement('div');
+    d.className='cart-item';
+    d.innerHTML=`
+      <div class="cart-item-img">${drawMiniCup(c1,c2)}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">$${item.price}</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+          <span style="font-size:.85rem">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+        </div>
+      </div>`;
+    ci.appendChild(d);
+  });
+}
+
+function changeQty(id,delta) {
+  if(!cart[id]) return;
+  cart[id].qty+=delta;
+  if(cart[id].qty<=0) delete cart[id];
+  updateCart();
+}
+
+function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+function checkout() { showToast('פותח תשלום מאובטח...'); setTimeout(closeCart,600); }
+
+// ── TOAST ──
+function showToast(msg) {
+  const t=document.getElementById('toast'); t.textContent=msg;
+  t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+// ── MOBILE MENU ──
+function toggleMobile() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// ── SCROLL REVEAL ──
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+// ── PARALLAX (subtle) ──
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  const blobs=document.querySelectorAll('.blob');
+  blobs.forEach((b,i)=>{ b.style.transform=`translate(${Math.sin(i)*y*0.02}px, ${y*0.04*(i+1)*0.3}px)`; });
+});
+
+// ── SELLERS HORIZONTAL DRAG SCROLL ──
+const wrap=document.querySelector('.sellers-scroll-wrap');
+let isDown=false,startX,scrollL;
+wrap.addEventListener('mousedown',e=>{isDown=true;startX=e.pageX-wrap.offsetLeft;scrollL=wrap.scrollLeft;});
+wrap.addEventListener('mouseleave',()=>isDown=false);
+wrap.addEventListener('mouseup',()=>isDown=false);
+wrap.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-wrap.offsetLeft;wrap.scrollLeft=scrollL-(x-startX)*1.2;});
+</script>
+</body>
+</html>
