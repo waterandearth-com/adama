@@ -740,7 +740,7 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <video class="bg-video" autoplay muted loop playsinline preload="metadata" poster="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_fields_in_Vietnam.jpg?width=1600">
+  <video class="bg-video" data-video-rotator data-videos="sora-rural-vietnam.mp4,hero-02.mp4" autoplay muted loop playsinline preload="metadata" poster="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_fields_in_Vietnam.jpg?width=1600">
     <source src="sora-rural-vietnam.mp4" type="video/mp4">
     <source src="sora-rural-vietnam.webm" type="video/webm">
   </video>
@@ -930,7 +930,7 @@
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
-  <video class="bg-video" autoplay muted loop playsinline preload="metadata" poster="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_fields_in_Vietnam.jpg?width=1600">
+  <video class="bg-video" data-video-rotator data-videos="sora-contact-vietnam.mp4" autoplay muted loop playsinline preload="metadata" poster="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rice_fields_in_Vietnam.jpg?width=1600">
     <source src="sora-contact-vietnam.mp4" type="video/mp4">
     <source src="sora-contact-vietnam.webm" type="video/webm">
   </video>
@@ -1155,6 +1155,25 @@ function showToast(msg) {
 // ── MOBILE MENU ──
 function toggleMobile() { document.getElementById('mobileMenu').classList.toggle('open'); }
 function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// ── BACKGROUND VIDEO ROTATION ──
+function setupVideoRotators() {
+  document.querySelectorAll('video[data-video-rotator]').forEach(video=>{
+    const videos=(video.dataset.videos || '').split(',').map(v=>v.trim()).filter(Boolean);
+    if(videos.length < 2) return;
+    let index=0;
+    video.dataset.currentVideo=videos[index];
+    setInterval(()=>{
+      index=(index+1)%videos.length;
+      video.dataset.currentVideo=videos[index];
+      video.src=videos[index];
+      video.load();
+      const playPromise=video.play();
+      if(playPromise) playPromise.catch(()=>{});
+    },14000);
+  });
+}
+setupVideoRotators();
 
 // ── SCROLL REVEAL ──
 const revealObserver = new IntersectionObserver((entries)=>{
