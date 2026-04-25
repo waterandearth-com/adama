@@ -1175,15 +1175,16 @@ function setupVideoRotators() {
     const videos=(video.dataset.videos || '').split(',').map(v=>v.trim()).filter(Boolean);
     if(videos.length < 2) return;
     let index=0;
+    video.loop=false;
     video.dataset.currentVideo=videos[index];
-    setInterval(()=>{
+    video.addEventListener('ended',()=>{
       index=(index+1)%videos.length;
       video.dataset.currentVideo=videos[index];
       video.src=videos[index];
       video.load();
       const playPromise=video.play();
       if(playPromise) playPromise.catch(()=>{});
-    },14000);
+    });
   });
 }
 setupVideoRotators();
